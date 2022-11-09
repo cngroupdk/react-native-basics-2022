@@ -1,18 +1,26 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import DetailInfoList from '../components/DetailInfoList';
 import PokemonStats from '../components/PokemonStats';
 import PokemonTypes from '../components/PokemonTypes';
 import { View } from '../components/Themed';
+import usePokemonList from '../hooks/usePokemon';
 import { RootStackScreenProps } from '../types';
 
 export default function PokemonDetailScreen({
   route,
 }: RootStackScreenProps<'PokemonDetail'>) {
-  const { pokemon } = route.params;
-  const { types, stats, name, id } = pokemon;
+  const { id } = route.params;
+  const pokemons = usePokemonList();
+  const pokemon = pokemons.find((pokemon) => `${pokemon.id}` === `${id}`);
+
+  if (!pokemon) {
+    return <Text>Loading...</Text>;
+  }
+
+  const { types, stats, name } = pokemon;
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>

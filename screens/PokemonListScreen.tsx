@@ -15,7 +15,9 @@ export default function PokemonListScreen({
     return (
       <PokemonTile
         pokemon={item}
-        onPress={(pokemon) => navigation.navigate('PokemonDetail', { pokemon })}
+        onPress={(pokemon) =>
+          navigation.navigate('PokemonDetail', { id: pokemon.id })
+        }
       />
     );
   };

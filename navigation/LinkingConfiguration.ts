@@ -25,6 +25,13 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
             },
           },
+          PokemonStack: {
+            initialRouteName: 'PokemonList',
+            screens: {
+              PokemonList: 'pokemons',
+              PokemonDetail: 'pokemons/:id',
+            },
+          },
         },
       },
       Modal: 'modal',

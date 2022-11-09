@@ -3,12 +3,12 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
-} from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+} from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
   namespace ReactNavigation {
@@ -18,11 +18,15 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  PokemonDetail: {
-    pokemon: Pokemon;
-  };
   Modal: undefined;
   NotFound: undefined;
+};
+
+export type PokemonStackParamList = {
+  PokemonList: undefined;
+  PokemonDetail: {
+    id: string;
+  };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -31,7 +35,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
-  PokemonList: undefined;
+  PokemonStack: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
@@ -93,7 +97,7 @@ type Sprites = {
     dream_world: {
       front_default: string;
     };
-    "official-artwork": {
+    'official-artwork': {
       front_default: string;
     };
   };
@@ -106,24 +110,24 @@ export type Stat = {
 };
 
 export type TypeName =
-  | "bug"
-  | "dark"
-  | "dragon"
-  | "electric"
-  | "fairy"
-  | "fighting"
-  | "fire"
-  | "flying"
-  | "ghost"
-  | "grass"
-  | "ground"
-  | "ice"
-  | "normal"
-  | "poison"
-  | "psychic"
-  | "rock"
-  | "steel"
-  | "water";
+  | 'bug'
+  | 'dark'
+  | 'dragon'
+  | 'electric'
+  | 'fairy'
+  | 'fighting'
+  | 'fire'
+  | 'flying'
+  | 'ghost'
+  | 'grass'
+  | 'ground'
+  | 'ice'
+  | 'normal'
+  | 'poison'
+  | 'psychic'
+  | 'rock'
+  | 'steel'
+  | 'water';
 
 export type Type = {
   slot: number;

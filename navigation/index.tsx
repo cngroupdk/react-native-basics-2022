@@ -12,7 +12,7 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, Text } from 'react-native';
 
 import PokemonId from '../components/PokemonId';
 import Colors from '../constants/Colors';
@@ -24,6 +24,7 @@ import PokemonListScreen from '../screens/PokemonListScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import {
+  PokemonStackParamList,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
@@ -38,6 +39,7 @@ export default function Navigation({
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
+      fallback={<Text>Loading...</Text>}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
@@ -64,17 +66,6 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="PokemonDetail"
-        component={PokemonDetailScreen}
-        options={({ route }) => ({
-          title: getDetailTitle(route.params.pokemon.name),
-          headerTitleStyle: {
-            fontSize: 24,
-          },
-          headerRight: () => <PokemonId id={route.params.pokemon.id} />,
-        })}
-      />
-      <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: 'Oops!' }}
@@ -92,14 +83,36 @@ function RootNavigator() {
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
+const PokemonStack = createNativeStackNavigator<PokemonStackParamList>();
+
+function PokemonStackScreen() {
+  return (
+    <PokemonStack.Navigator>
+      <PokemonStack.Screen name="PokemonList" component={PokemonListScreen} />
+      <PokemonStack.Screen
+        name="PokemonDetail"
+        component={PokemonDetailScreen}
+        options={({ route }) => ({
+          // title: getDetailTitle(route.params.pokemon.name),
+          headerTitleStyle: {
+            fontSize: 24,
+          },
+          headerRight: () => <PokemonId id={parseInt(route.params.id, 10)} />,
+        })}
+      />
+    </PokemonStack.Navigator>
+  );
+}
+
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="PokemonStack"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        headerShown: false,
       }}
     >
       <BottomTab.Screen
@@ -134,10 +147,11 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="PokemonList"
-        component={PokemonListScreen}
+        name="PokemonStack"
+        component={PokemonStackScreen}
         options={{
-          title: 'Pokémon List',
+          title: 'Pokémons',
+          headerTitleContainerStyle: { display: 'none' },
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
