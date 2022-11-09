@@ -1,0 +1,7 @@
+# Add files here to ignore them from prettier formatting
+/.expo
+/.expo-shared
+/assets
+
+package.json
+package-lock.json
