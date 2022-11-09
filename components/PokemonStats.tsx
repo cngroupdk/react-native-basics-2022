@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
-import { Stat } from "../types";
+import { Stat } from '../types';
 
 const MAX_STAT_LEVEL = 10;
 const MAX_STAT_VALUE = 255;
@@ -16,7 +16,7 @@ function PokemonStats({ stats }: Props) {
       {stats.map((stat) => (
         <View style={styles.stat} key={stat.stat.url}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.label}>{stat.stat.name.replace("-", " ")}</Text>
+            <Text style={styles.label}>{stat.stat.name.replace('-', ' ')}</Text>
           </View>
           <View style={styles.indicatorContainer}>
             {[...Array(MAX_STAT_LEVEL).keys()].map((index) => {
@@ -24,7 +24,7 @@ function PokemonStats({ stats }: Props) {
                 index <
                 Math.ceil(stat.base_stat / (MAX_STAT_VALUE / MAX_STAT_LEVEL));
 
-              const backgroundColor = isFilled ? "#3dc7ef" : "#ffffff";
+              const backgroundColor = isFilled ? '#3dc7ef' : '#ffffff';
 
               return (
                 <View
@@ -47,24 +47,24 @@ function PokemonStats({ stats }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#d3d3d3",
+    backgroundColor: '#d3d3d3',
     borderRadius: 8,
     padding: 8,
     marginVertical: 8,
   },
   stat: {
-    flexDirection: "row-reverse",
-    alignItems: "center",
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
   },
   label: {
     fontSize: 16,
-    textTransform: "capitalize",
-    fontWeight: "600",
+    textTransform: 'capitalize',
+    fontWeight: '600',
   },
   indicatorContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginRight: 8,
     marginVertical: 8,
   },

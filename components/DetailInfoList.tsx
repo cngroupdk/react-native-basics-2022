@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
-import { Link } from "../types";
+import { Link } from '../types';
 
 type Props = {
   label: string;
@@ -14,7 +14,7 @@ export default function DetailInfoList({ label, infos }: Props) {
       <Text style={styles.label}>{label}</Text>
       {infos.map((info) => (
         <Text style={styles.infoLabel} key={info.url}>
-          {info.name.replace("-", " ")}
+          {info.name.replace('-', ' ')}
         </Text>
       ))}
     </View>
@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "#ffffff",
+    fontWeight: '500',
+    color: '#ffffff',
     marginBottom: 8,
   },
   infoLabel: {
     fontSize: 20,
-    textTransform: "capitalize",
+    textTransform: 'capitalize',
   },
 });

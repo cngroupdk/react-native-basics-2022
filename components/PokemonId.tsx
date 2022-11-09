@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 type Props = {
   id: number;
@@ -8,7 +8,7 @@ type Props = {
 function PokemonId({ id }: Props) {
   const formatPokemonId = (value: number): string => {
     const padding = 4 - value.toString().length;
-    var zeroes = new Array(padding).join("0");
+    var zeroes = new Array(padding).join('0');
 
     return `#${zeroes + value}`;
   };
@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     width: 48,
     height: 24,
     borderRadius: 4,
-    backgroundColor: "#d3d3d3",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#d3d3d3',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   id: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
   },
 });
 

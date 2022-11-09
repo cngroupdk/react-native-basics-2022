@@ -3,32 +3,32 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
-} from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { ColorSchemeName, Pressable } from 'react-native';
 
-import PokemonId from "../components/PokemonId";
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../screens/ModalScreen";
-import NotFoundScreen from "../screens/NotFoundScreen";
-import PokemonDetailScreen from "../screens/PokemonDetailScreen";
-import PokemonListScreen from "../screens/PokemonListScreen";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import PokemonId from '../components/PokemonId';
+import Colors from '../constants/Colors';
+import useColorScheme from '../hooks/useColorScheme';
+import ModalScreen from '../screens/ModalScreen';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import PokemonDetailScreen from '../screens/PokemonDetailScreen';
+import PokemonListScreen from '../screens/PokemonListScreen';
+import TabOneScreen from '../screens/TabOneScreen';
+import TabTwoScreen from '../screens/TabTwoScreen';
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
-} from "../types";
-import LinkingConfiguration from "./LinkingConfiguration";
+} from '../types';
+import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({
   colorScheme,
@@ -38,7 +38,7 @@ export default function Navigation({
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
     </NavigationContainer>
@@ -77,9 +77,9 @@ function RootNavigator() {
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
-        options={{ title: "Oops!" }}
+        options={{ title: 'Oops!' }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
@@ -105,12 +105,12 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Tab One",
+        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+          title: 'Tab One',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate("Modal")}
+              onPress={() => navigation.navigate('Modal')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
@@ -129,7 +129,7 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: "Tab Two",
+          title: 'Tab Two',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -137,7 +137,7 @@ function BottomTabNavigator() {
         name="PokemonList"
         component={PokemonListScreen}
         options={{
-          title: "Pokémon List",
+          title: 'Pokémon List',
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
@@ -149,7 +149,7 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;

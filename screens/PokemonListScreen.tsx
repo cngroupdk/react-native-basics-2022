@@ -1,21 +1,21 @@
-import React from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
+import React from 'react';
+import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 
-import PokemonTile from "../components/PokemonTile";
-import { View } from "../components/Themed";
-import usePokemonList from "../hooks/usePokemon";
-import { Pokemon, RootTabScreenProps } from "../types";
+import PokemonTile from '../components/PokemonTile';
+import { View } from '../components/Themed';
+import usePokemonList from '../hooks/usePokemon';
+import { Pokemon, RootTabScreenProps } from '../types';
 
 export default function PokemonListScreen({
   navigation,
-}: RootTabScreenProps<"PokemonList">) {
+}: RootTabScreenProps<'PokemonList'>) {
   const pokemonList = usePokemonList();
 
   const renderItem = ({ item }: ListRenderItemInfo<Pokemon>) => {
     return (
       <PokemonTile
         pokemon={item}
-        onPress={(pokemon) => navigation.navigate("PokemonDetail", { pokemon })}
+        onPress={(pokemon) => navigation.navigate('PokemonDetail', { pokemon })}
       />
     );
   };
