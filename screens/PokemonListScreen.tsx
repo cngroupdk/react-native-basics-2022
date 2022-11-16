@@ -2,13 +2,13 @@ import React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 
 import PokemonTile from '../components/PokemonTile';
-import { View } from '../components/Themed';
-import usePokemonList from '../hooks/usePokemon';
-import { Pokemon, RootTabScreenProps } from '../types';
+import { View, Text } from '../components/Themed';
+import { usePokemonList } from '../hooks/usePokemon';
+import { Pokemon, PokemenonStackScreenProps } from '../types';
 
 export default function PokemonListScreen({
   navigation,
-}: RootTabScreenProps<'PokemonList'>) {
+}: PokemenonStackScreenProps<'PokemonList'>) {
   const pokemonList = usePokemonList();
 
   const renderItem = ({ item }: ListRenderItemInfo<Pokemon>) => {
@@ -16,7 +16,7 @@ export default function PokemonListScreen({
       <PokemonTile
         pokemon={item}
         onPress={(pokemon) =>
-          navigation.navigate('PokemonDetail', { id: pokemon.id })
+          navigation.navigate('PokemonDetail', { id: pokemon.id.toString() })
         }
       />
     );
@@ -24,11 +24,15 @@ export default function PokemonListScreen({
 
   return (
     <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={styles.content}
-        renderItem={renderItem}
-        data={pokemonList}
-      />
+      {pokemonList.isLoading ? (
+        <Text>Loading...</Text>
+      ) : (
+        <FlatList
+          contentContainerStyle={styles.content}
+          renderItem={renderItem}
+          data={pokemonList.data}
+        />
+      )}
     </View>
   );
 }

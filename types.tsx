@@ -22,6 +22,9 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
+
 export type PokemonStackParamList = {
   PokemonList: undefined;
   PokemonDetail: {
@@ -29,13 +32,14 @@ export type PokemonStackParamList = {
   };
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, Screen>;
+export type PokemenonStackScreenProps<
+  Screen extends keyof PokemonStackParamList,
+> = NativeStackScreenProps<PokemonStackParamList, Screen>;
 
 export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
-  PokemonStack: undefined;
+  PokemonStack: NavigatorScreenParams<PokemonStackParamList>;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

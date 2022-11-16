@@ -6,15 +6,14 @@ import DetailInfoList from '../components/DetailInfoList';
 import PokemonStats from '../components/PokemonStats';
 import PokemonTypes from '../components/PokemonTypes';
 import { View } from '../components/Themed';
-import usePokemonList from '../hooks/usePokemon';
-import { RootStackScreenProps } from '../types';
+import { usePokemonDetail } from '../hooks/usePokemon';
+import { PokemenonStackScreenProps } from '../types';
 
 export default function PokemonDetailScreen({
   route,
-}: RootStackScreenProps<'PokemonDetail'>) {
+}: PokemenonStackScreenProps<'PokemonDetail'>) {
   const { id } = route.params;
-  const pokemons = usePokemonList();
-  const pokemon = pokemons.find((pokemon) => `${pokemon.id}` === `${id}`);
+  const pokemon = usePokemonDetail(id);
 
   if (!pokemon) {
     return <Text>Loading...</Text>;
