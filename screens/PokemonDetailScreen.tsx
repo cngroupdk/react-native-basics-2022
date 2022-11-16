@@ -13,13 +13,17 @@ export default function PokemonDetailScreen({
   route,
 }: PokemenonStackScreenProps<'PokemonDetail'>) {
   const { id } = route.params;
-  const pokemon = usePokemonDetail(id);
+  const pokemonDetail = usePokemonDetail(id);
 
-  if (!pokemon) {
+  if (pokemonDetail.isLoading) {
     return <Text>Loading...</Text>;
   }
 
-  const { types, stats, name } = pokemon;
+  if (!pokemonDetail.data) {
+    return <Text>No data!</Text>;
+  }
+
+  const { types, stats, abilities, sprites } = pokemonDetail.data;
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
@@ -27,7 +31,7 @@ export default function PokemonDetailScreen({
         <Image
           style={styles.image}
           source={{
-            uri: pokemon.sprites.other['official-artwork'].front_default,
+            uri: sprites.other['official-artwork'].front_default,
           }}
         />
       </View>
@@ -35,7 +39,7 @@ export default function PokemonDetailScreen({
       <View style={styles.infoWrapper}>
         <DetailInfoList
           label="Abilities"
-          infos={pokemon.abilities.map((ability) => ability.ability)}
+          infos={abilities.map((ability) => ability.ability)}
         />
       </View>
       <PokemonStats stats={stats} />
