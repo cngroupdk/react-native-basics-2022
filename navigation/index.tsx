@@ -54,10 +54,6 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const getDetailTitle = (name: string) => {
-    return `${name[0].toUpperCase()}${name.slice(1)}`;
-  };
-
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -86,14 +82,22 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 const PokemonStack = createNativeStackNavigator<PokemonStackParamList>();
 
 function PokemonStackScreen() {
+  const getDetailTitle = (name: string) => {
+    return `${name[0].toUpperCase()}${name.slice(1)}`;
+  };
+
   return (
     <PokemonStack.Navigator>
-      <PokemonStack.Screen name="PokemonList" component={PokemonListScreen} />
+      <PokemonStack.Screen
+        name="PokemonList"
+        component={PokemonListScreen}
+        options={{ title: 'Pokémons' }}
+      />
       <PokemonStack.Screen
         name="PokemonDetail"
         component={PokemonDetailScreen}
         options={({ route }) => ({
-          // title: getDetailTitle(route.params.pokemon.name),
+          title: getDetailTitle(route.params.name),
           headerTitleStyle: {
             fontSize: 24,
           },
@@ -150,7 +154,6 @@ function BottomTabNavigator() {
         name="PokemonStack"
         component={PokemonStackScreen}
         options={{
-          title: 'Pokémons',
           headerTitleContainerStyle: { display: 'none' },
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}

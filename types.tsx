@@ -29,6 +29,7 @@ export type PokemonStackParamList = {
   PokemonList: undefined;
   PokemonDetail: {
     id: string;
+    name: string;
   };
 };
 
