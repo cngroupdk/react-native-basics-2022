@@ -6,8 +6,8 @@ const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 export const POKEMON_LIST_QUERY_KEY = 'pokemonList';
 
-const getPokemonDetail = async (name: string) => {
-  const response = await fetch(`${BASE_URL}/${name}`);
+const getPokemonDetail = async (url: string) => {
+  const response = await fetch(url);
 
   return await response.json();
 };
@@ -16,8 +16,8 @@ const getPokemons = async (): Promise<Pokemon[]> => {
   const response = await fetch(BASE_URL);
   const result: PokemonList = await response.json();
 
-  const detailPromises = result.results.map(async ({ name }) =>
-    getPokemonDetail(name).then((response) => response),
+  const detailPromises = result.results.map(async ({ url }) =>
+    getPokemonDetail(url),
   );
 
   const data = await Promise.all(detailPromises);

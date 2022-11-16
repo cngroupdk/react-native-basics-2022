@@ -11,6 +11,10 @@ export default function PokemonListScreen({
 }: PokemenonStackScreenProps<'PokemonList'>) {
   const pokemonList = usePokemonList();
 
+  if (pokemonList.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
   const renderItem = ({ item }: ListRenderItemInfo<Pokemon>) => {
     return (
       <PokemonTile
@@ -27,15 +31,11 @@ export default function PokemonListScreen({
 
   return (
     <View style={styles.container}>
-      {pokemonList.isLoading ? (
-        <Text>Loading...</Text>
-      ) : (
-        <FlatList
-          contentContainerStyle={styles.content}
-          renderItem={renderItem}
-          data={pokemonList.data}
-        />
-      )}
+      <FlatList
+        contentContainerStyle={styles.content}
+        renderItem={renderItem}
+        data={pokemonList.data}
+      />
     </View>
   );
 }

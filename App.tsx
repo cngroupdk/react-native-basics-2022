@@ -6,11 +6,6 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
-if (__DEV__) {
-  // @ts-ignore
-  import('./ReactotronConfig');
-}
-
 const queryClient = new QueryClient();
 
 export default function App() {
