@@ -31,7 +31,7 @@ const getPokemons = async (): Promise<Pokemon[]> => {
 };
 
 const usePokemonList = (): UseQueryResult<Pokemon[]> =>
-  useQuery([POKEMON_LIST_QUERY_KEY], getPokemons, { staleTime: Infinity });
+  useQuery([POKEMON_LIST_QUERY_KEY], getPokemons);
 
 const usePokemonDetail = (id: string): UseQueryResult<Pokemon> => {
   const queryClient = useQueryClient();
