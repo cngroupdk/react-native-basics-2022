@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 
 import PokemonTile from '../components/PokemonTile';
@@ -11,23 +12,26 @@ export default function PokemonListScreen({
 }: PokemenonStackScreenProps<'PokemonList'>) {
   const pokemonList = usePokemonList();
 
+  const renderItem = useCallback(
+    ({ item }: ListRenderItemInfo<Pokemon>) => {
+      return (
+        <PokemonTile
+          pokemon={item}
+          onPress={(pokemon) =>
+            navigation.navigate('PokemonDetail', {
+              id: pokemon.id.toString(),
+              name: pokemon.name,
+            })
+          }
+        />
+      );
+    },
+    [navigation],
+  );
+
   if (pokemonList.isLoading) {
     return <Text>Loading...</Text>;
   }
-
-  const renderItem = ({ item }: ListRenderItemInfo<Pokemon>) => {
-    return (
-      <PokemonTile
-        pokemon={item}
-        onPress={(pokemon) =>
-          navigation.navigate('PokemonDetail', {
-            id: pokemon.id.toString(),
-            name: pokemon.name,
-          })
-        }
-      />
-    );
-  };
 
   return (
     <View style={styles.container}>
