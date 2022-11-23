@@ -81,7 +81,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const PokemonStack = createNativeStackNavigator<PokemonStackParamList>();
 
-function PokemonStackScreen() {
+function PokemonStackNavigator() {
   const getDetailTitle = (name: string) => {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
   };
@@ -91,7 +91,7 @@ function PokemonStackScreen() {
       <PokemonStack.Screen
         name="PokemonList"
         component={PokemonListScreen}
-        options={{ title: 'Pokémons' }}
+        options={{ title: 'Pokémon' }}
       />
       <PokemonStack.Screen
         name="PokemonDetail"
@@ -116,7 +116,6 @@ function BottomTabNavigator() {
       initialRouteName="PokemonStack"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-        headerShown: false,
       }}
     >
       <BottomTab.Screen
@@ -152,8 +151,10 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="PokemonStack"
-        component={PokemonStackScreen}
+        component={PokemonStackNavigator}
         options={{
+          title: 'Pokémon',
+          headerShown: false,
           headerTitleContainerStyle: { display: 'none' },
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}

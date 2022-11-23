@@ -7,11 +7,11 @@ import PokemonStats from '../components/PokemonStats';
 import PokemonTypes from '../components/PokemonTypes';
 import { View } from '../components/Themed';
 import { usePokemonDetail } from '../hooks/usePokemon';
-import { PokemenonStackScreenProps } from '../types';
+import { PokemonStackScreenProps } from '../types';
 
 export default function PokemonDetailScreen({
   route,
-}: PokemenonStackScreenProps<'PokemonDetail'>) {
+}: PokemonStackScreenProps<'PokemonDetail'>) {
   const { id } = route.params;
   const pokemonDetail = usePokemonDetail(id);
 

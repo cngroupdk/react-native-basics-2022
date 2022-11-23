@@ -33,7 +33,7 @@ export type PokemonStackParamList = {
   };
 };
 
-export type PokemenonStackScreenProps<
+export type PokemonStackScreenProps<
   Screen extends keyof PokemonStackParamList,
 > = NativeStackScreenProps<PokemonStackParamList, Screen>;
 

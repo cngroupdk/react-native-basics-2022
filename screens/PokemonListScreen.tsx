@@ -5,11 +5,11 @@ import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import PokemonTile from '../components/PokemonTile';
 import { View, Text } from '../components/Themed';
 import { usePokemonList } from '../hooks/usePokemon';
-import { Pokemon, PokemenonStackScreenProps } from '../types';
+import { Pokemon, PokemonStackScreenProps } from '../types';
 
 export default function PokemonListScreen({
   navigation,
-}: PokemenonStackScreenProps<'PokemonList'>) {
+}: PokemonStackScreenProps<'PokemonList'>) {
   const pokemonList = usePokemonList();
 
   const renderItem = useCallback(
