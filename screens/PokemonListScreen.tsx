@@ -1,9 +1,14 @@
 import React from 'react';
 import { useCallback } from 'react';
-import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+} from 'react-native';
 
 import PokemonTile from '../components/PokemonTile';
-import { View, Text } from '../components/Themed';
 import { usePokemonList } from '../hooks/usePokemon';
 import { Pokemon, PokemonStackScreenProps } from '../types';
 

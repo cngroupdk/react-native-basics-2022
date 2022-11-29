@@ -1,11 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet, Text } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import DetailInfoList from '../components/DetailInfoList';
 import PokemonStats from '../components/PokemonStats';
 import PokemonTypes from '../components/PokemonTypes';
-import { View } from '../components/Themed';
 import { usePokemonDetail } from '../hooks/usePokemon';
 import { PokemonStackScreenProps } from '../types';
 
