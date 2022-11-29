@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    backgroundColor: '#ffffff',
   },
   titleWrapper: {
     justifyContent: 'center',
@@ -66,6 +65,7 @@ const styles = StyleSheet.create({
   },
   imageWrapper: {
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   image: {
     height: 240,
